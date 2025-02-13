@@ -30,37 +30,12 @@
             opacity: 0;
             transition: opacity 0.5s ease-in;
         }
-        .play-button {
-            background-color: red;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 24px;
-            cursor: pointer;
-            margin-bottom: 20px;
-        }
-        .play-button:hover {
-            background-color: darkred;
-        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <button class="play-button" onclick="playMusic()">Play Music</button>
-        <div id="message"></div>
-    </div>
-
-    <audio id="backgroundMusic" loop>
-        <source src="https://example.com/path/to/your-music.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
+    <div class="container" id="message"></div>
 
     <script>
-        function playMusic() {
-            const audio = document.getElementById("backgroundMusic");
-            audio.play();
-        }
-
         const text = `Meine Liebe, Lilli,
 
 Der Valentinstag mag ein besonderer Anlass sein, aber für mich ist jeder einzelne Tag ein Grund, dich zu lieben und zu schätzen. Meine Liebe zu dir ist nicht auf einen einzigen Tag beschränkt, sie ist konstant, unerschütterlich und wächst mit jedem Tag. Auch wenn die Entfernung uns gerade trennt, möchte ich, dass du meine Liebe durch diese Worte spürst, bis ich sie dir endlich in jeder erdenklichen Weise zeigen kann.
@@ -105,3 +80,4 @@ Michael Joseph Adams`;
     </script>
 </body>
 </html>
+
