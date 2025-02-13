@@ -50,44 +50,20 @@
         <div id="message"></div>
     </div>
 
-    <div id="player" style="display: none;"></div>
+    <audio id="backgroundMusic" loop>
+        <source src="https://example.com/path/to/your-music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
     <script>
-        const tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        const firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-        let player;
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('player', {
-                height: '0',
-                width: '0',
-                videoId: 'd0rjX6TNpkU',
-                events: {
-                    'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
-                }
-            });
-        }
-
         function playMusic() {
-            player.playVideo();
-        }
-
-        function onPlayerReady(event) {
-            // Do nothing, wait for user interaction
-        }
-
-        function onPlayerStateChange(event) {
-            if (event.data === YT.PlayerState.ENDED) {
-                player.playVideo();
-            }
+            const audio = document.getElementById("backgroundMusic");
+            audio.play();
         }
 
         const text = `Meine Liebe, Lilli,
 
-Der Valentinstag mag ein besonderer Anlass sein, aber für mich ist jeder einzelne Tag ein Grund, dich zu lieben und zu schätzen. Meine Liebe zu dir ist nicht auf einen einzigen Tag beschränkt , sie ist konstant, unerschütterlich und wächst mit jedem Tag. Auch wenn die Entfernung uns gerade trennt, möchte ich, dass du meine Liebe durch diese Worte spürst, bis ich sie dir endlich in jeder erdenklichen Weise zeigen kann.
+Der Valentinstag mag ein besonderer Anlass sein, aber für mich ist jeder einzelne Tag ein Grund, dich zu lieben und zu schätzen. Meine Liebe zu dir ist nicht auf einen einzigen Tag beschränkt, sie ist konstant, unerschütterlich und wächst mit jedem Tag. Auch wenn die Entfernung uns gerade trennt, möchte ich, dass du meine Liebe durch diese Worte spürst, bis ich sie dir endlich in jeder erdenklichen Weise zeigen kann.
 
 Über ein Jahr sind wir nun zusammen, und wir sind immer noch so stark, genau das habe ich mir erhofft und wofür ich dankbar bin. Kein Streit, keine Herausforderung, kein Hindernis könnte mich jemals an uns zweifeln lassen. Du bist mein Mensch, meine große Liebe, mein Zuhause. Ich habe das gemacht, um meine Liebe und Wertschätzung zu zeigen, damit du dich besonders fühlst, weil du es verdienst. Deshalb habe ich dieses Projekt für dich gemacht, nicht nur als Geschenk, sondern als Erinnerung daran, wie tief und einzigartig meine Liebe zu dir ist.
 
@@ -103,7 +79,8 @@ Ich vermisse dich, ich denke jeden Tag an dich, und ich trage dich in allem, was
 
 Ich liebe dich, Lilli. Mehr als gestern, aber weniger als morgen.
 
-Für immer dein, Michael Joseph Adams`;
+Für immer dein,
+Michael Joseph Adams`;
 
         const messageContainer = document.getElementById("message");
         const paragraphs = text.split("\n\n");
