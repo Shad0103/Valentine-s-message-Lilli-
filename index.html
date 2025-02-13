@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Message</title>
+    <style>
+        body {
+            background-color: black;
+            color: red;
+            font-family: 'Georgia', serif;
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 100%;
+            width: 100%;
+            line-height: 1.6;
+            word-break: break-word;
+        }
+        .word {
+            opacity: 0;
+            transition: opacity 0.5s ease-in;
+        }
+        .play-button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 24px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .play-button:hover {
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="play-button" onclick="playMusic()">Play Music</button>
+        <div id="message"></div>
+    </div>
+
+    <div id="player" style="display: none;"></div>
+
+    <script>
+        const tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        let player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '0',
+                width: '0',
+                videoId: 'd0rjX6TNpkU',
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function playMusic() {
+            player.playVideo();
+        }
+
+        function onPlayerReady(event) {
+            // Do nothing, wait for user interaction
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.ENDED) {
+                player.playVideo();
+            }
+        }
+
+        const text = `Meine Liebe, Lilli,
+
+Der Valentinstag mag ein besonderer Anlass sein, aber für mich ist jeder einzelne Tag ein Grund, dich zu lieben und zu schätzen. Meine Liebe zu dir ist nicht auf einen einzigen Tag beschränkt – sie ist konstant, unerschütterlich und wächst mit jedem Moment. Auch wenn die Entfernung uns gerade trennt, möchte ich, dass du meine Liebe durch diese Worte spürst, bis ich sie dir endlich in jeder erdenklichen Weise zeigen kann.
+
+Über ein Jahr sind wir nun zusammen, und wir sind immer noch so stark – genau das habe ich mir erhofft und wofür ich dankbar bin. Kein Streit, keine Herausforderung, kein Hindernis könnte mich jemals an uns zweifeln lassen. Du bist mein Mensch, meine große Liebe, mein Zuhause. Und heute wollte ich etwas tun, was sonst niemand für dich tun würde – weil du es verdienst, dich auf eine Weise besonders zu fühlen, die nur ich dir geben kann. Deshalb habe ich dieses Projekt für dich gemacht, nicht nur als Geschenk, sondern als Erinnerung daran, wie tief und einzigartig meine Liebe zu dir ist.
+
+Dies ist unser vorletzter Valentinstag, den wir getrennt verbringen müssen. Bald werden wir jeden einzelnen gemeinsam erleben – voller Abenteuer, Lachen und Überraschungen, die unser Herz höher schlagen lassen. Egal welche Fehler oder Unvollkommenheiten wir haben, ich erinnere mich immer daran, dass wir jung sind, wachsen und miteinander lernen. Und ich würde lieber jede Herausforderung mit dir durchstehen als mit jemand anderem von vorne beginnen – denn mein Herz gehört dir, Lilli Tuana Dewerzeny.
+
+Du bist selten, außergewöhnlich und unersetzlich. Intelligent, ehrgeizig, einfühlsam und atemberaubend schön. Und deine Augen, Lilli… sie sind einfach magisch. Die Art, wie sie leuchten, wenn sie meine treffen – das raubt mir jedes Mal den Atem. Dass ich das Privileg habe, in sie zu blicken, mich in ihnen zu verlieren, ist ein Geschenk, das ich niemals als selbstverständlich ansehen werde.
+
+Ich möchte, dass diese Nachricht etwas ist, zu dem du zurückkehrst, wenn du dich traurig, unsicher oder weit weg fühlst. Lass sie dich daran erinnern, dass du geliebt wirst – über Worte hinaus, über jede Entfernung, über jede Zeit. Du bist meine Frau im Herzen, meine beste Freundin, meine Vertraute, mein Trost, meine Seelenverwandte, meine größte Unterstützung – die Frau, die die Bedeutung des Wortes "wunderschön" jeden Tag neu definiert.
+
+Du wirst eine unglaubliche Mutter sein, eine liebevolle Katzenbesitzerin und die wundervollste Ehefrau. Lass nicht zu, dass Negativität oder Entfernung die Wahrheit verdunkeln: Dies ist nur eine Prüfung, die wir gemeinsam bestehen, denn was wir haben, ist real, unzerbrechlich und jeden Moment der Trennung wert. Eines Tages werden wir zurückblicken und wissen, dass es sich gelohnt hat.
+
+Ich vermisse dich, ich denke jeden Tag an dich, und ich trage dich in allem, was ich tue, bei mir. Du bist meine Motivation, mein Antrieb, mein Grund, ein besserer Mann zu werden – nicht nur für uns, sondern auch für mich selbst, denn du inspirierst mich wie niemand sonst.
+
+Ich liebe dich, Lilli. Mehr als gestern, aber weniger als morgen.
+
+Für immer dein, Michael Joseph Adams`;
+
+        const messageContainer = document.getElementById("message");
+        const paragraphs = text.split("\n\n");
+        let paragraphIndex = 0;
+
+        function displayParagraph() {
+            if (paragraphIndex >= paragraphs.length) return;
+            messageContainer.innerHTML = "";
+            const words = paragraphs[paragraphIndex].split(" ");
+            words.forEach((word, index) => {
+                let span = document.createElement("span");
+                span.textContent = word + " ";
+                span.classList.add("word");
+                messageContainer.appendChild(span);
+                setTimeout(() => span.style.opacity = 1, index * 300);
+            });
+            paragraphIndex++;
+            setTimeout(displayParagraph, words.length * 300 + 5000);
+        }
+
+        displayParagraph();
+    </script>
+</body>
+</html>
